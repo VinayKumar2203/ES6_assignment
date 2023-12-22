@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>counter class</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>
+         #num{
+            display: flex;
+        }
+        .visibility {
+            display: none;
+        }
+         
+    </style>
+</head>
+<body>
+    
+      <h1 id="counter">5</h1>
+
+    <h1>counter class</h1>
+    <button onclick="increment()">increment</button>
+    <button onclick="decrement()">decrement</button>
+    <button id="start" onclick="startFun()">start</button>
+    <button id="stop" onclick="stopFun()">stop</button>
+</body>
+</html>
+<script>
+    let count=5;
+    let isStart=false;
+    let intervalId;
+    let start=document.getElementById("start");
+    let stop=document.getElementById("stop");
+   let head=document.getElementById("counter");
+      head.innerText=count;
+
+
+          
+        function start1() {
+        isStart=true;
+        intervalId=setInterval(() => {
+            count++
+        }, 1000);
+        head.innerText=count;
+     }
+  
+    //  for window reload for every second'
+    function windowLoad() {
+        setInterval(() => {
+            location.reload();
+        }, 1000);
+    }
+
+
+    // logic one.....>>>>>>
+     function incre() {
+        clearInterval(intervalId);
+        count++;
+        head.innerText=count;
+        isStart=false;
+     }
+    //  logic two.....>>>>>>>
+     function decre() {
+        clearInterval(intervalId);
+        count--;
+        head.innerText=count;
+        isStart=false;
+     }
+
+    //  logic third.........>>>>>>>>>>
+    function logicThird() {
+    if (isStart) {
+        clearInterval(intervalId);
+        isStart = false;
+    } else {
+        isStart = true;
+        start1();
+    }
+}
+
+
+
+    //  button start here.....>>>
+
+      function increment() {
+        start.classList.remove("visibility");
+        stop.classList.add("visibility");
+        incre();
+      
+   }
+
+
+   function decrement() {
+        start.classList.remove("visibility");
+        stop.classList.add("visibility");
+        decre();
+
+    
+   }
+
+
+   function startFun() {
+        start.classList.add("visibility");
+        stop.classList.remove("visibility");
+        start1() ;
+    
+        console.log(count)
+   }
+
+
+   function stopFun() {
+        start.classList.remove("visibility");
+        stop.classList.add("visibility");
+        clearInterval(intervalId);
+        isStart = false;
+
+   }
+   
+
+</script>
+
